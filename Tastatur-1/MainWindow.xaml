@@ -1,0 +1,206 @@
+﻿<Window x:Name="TastaturForm" x:Class="Tastatur_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tastatur_1"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="758.333" WindowStyle="None" Loaded="Window_Loaded"
+        >
+    
+    <Window.Resources>
+        <local:KeyBoard x:Key="keyBoard"/>
+        
+        <Style x:Key="tastaturKey" TargetType="TextBlock">
+            <Setter Property="MinHeight" Value="50" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="Padding" Value="10" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="shiftKey" TargetType="TextBlock" BasedOn="{StaticResource tastaturKey}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Shift, Source={StaticResource keyBoard}}" Value="True">
+                    <Setter Property="Background" Value="LightBlue" />
+                    <Setter Property="Foreground" Value="Black" />
+                </DataTrigger>                
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="capsKey" TargetType="TextBlock" BasedOn="{StaticResource tastaturKey}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Caps, Source={StaticResource keyBoard}}" Value="True">
+                    <Setter Property="Background" Value="LightBlue" />
+                    <Setter Property="Foreground" Value="Black" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    
+    
+    <StackPanel Orientation="Vertical" Margin="0,0,2,0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="0" x:Name="vk_esc" Text="Esc" MouseUp="key_MouseUp" MouseDown="key_MouseDown" />
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="1" x:Name="vk_baps" Text="{Binding baps_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="2" x:Name="vk_1" Text="{Binding label_1, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="3" x:Name="vk_2" Text="{Binding label_2, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="4" x:Name="vk_3" Text="{Binding label_3, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="5" x:Name="vk_4" Text="{Binding label_4, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="6" x:Name="vk_5" Text="{Binding label_5, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="7" x:Name="vk_6" Text="{Binding label_6, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="8" x:Name="vk_7" Text="{Binding label_7, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="9" x:Name="vk_8" Text="{Binding label_8, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="10" x:Name="vk_9" Text="{Binding label_9, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="11" x:Name="vk_0" Text="{Binding label_0, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="12" x:Name="vk_minus" Text="{Binding minus_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="13" x:Name="vk_plus" Text="{Binding plus_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="14" x:Name="vk_bksp" Text="&#x2190;" MouseUp="key_MouseUp"  />
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="0" x:Name="vk_tab" Text="&#x21b9;" MouseUp="key_MouseUp" MouseDown="key_MouseDown" />
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="1" x:Name="vk_q" Text="{Binding q_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown" />
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="2" x:Name="vk_w" Text="{Binding w_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="3" x:Name="vk_e" Text="{Binding e_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="4" x:Name="vk_r" Text="{Binding r_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="5" x:Name="vk_t" Text="{Binding t_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="6" x:Name="vk_y" Text="{Binding y_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="7" x:Name="vk_u" Text="{Binding u_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="8" x:Name="vk_i" Text="{Binding i_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="9" x:Name="vk_o" Text="{Binding o_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="10" x:Name="vk_p" Text="{Binding p_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="11" x:Name="vk_leftbr" Text="{Binding leftbr_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="12" x:Name="vk_rightbr" Text="{Binding rightbr_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="13" x:Name="vk_bslash" Text="{Binding bslash_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="14" x:Name="vk_del" Text="Del"  MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource capsKey}" Grid.Column="0" x:Name="vk_caps" Text="Caps" MouseUp="vk_caps_MouseUp" MouseDown="key_MouseDown" />
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="1" x:Name="vk_a" Text="{Binding a_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown" />
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="2" x:Name="vk_s" Text="{Binding s_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="3" x:Name="vk_d" Text="{Binding d_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="4" x:Name="vk_f" Text="{Binding f_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="5" x:Name="vk_g" Text="{Binding g_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="6" x:Name="vk_h" Text="{Binding h_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="7" x:Name="vk_j" Text="{Binding j_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="8" x:Name="vk_k" Text="{Binding k_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="9" x:Name="vk_l" Text="{Binding l_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="10" x:Name="vk_column" Text="{Binding column_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="11" x:Name="vk_aps" Text="{Binding aps_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="12" x:Name="vk_enter" Text="&#x21b5;" MouseUp="key_MouseUp" MouseDown="key_MouseDown" />
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource shiftKey}" Grid.Column="0" x:Name="vk_lshift" Text="&#x21e7;" MouseUp="vk_shift_MouseUp" />
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="1" x:Name="vk_z" Text="{Binding z_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="2" x:Name="vk_x" Text="{Binding x_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="3" x:Name="vk_c" Text="{Binding c_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="4" x:Name="vk_v" Text="{Binding v_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="5" x:Name="vk_b" Text="{Binding b_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="6" x:Name="vk_n" Text="{Binding n_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="7" x:Name="vk_m" Text="{Binding m_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="8" x:Name="vk_comma" Text="{Binding comma_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="9" x:Name="vk_dot" Text="{Binding dot_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="10" x:Name="vk_slash" Text="{Binding slash_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource shiftKey}" Grid.Column="11" x:Name="vk_rshift" Text="&#x21e7;" MouseUp="vk_shift_MouseUp" />
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="12" x:Name="vk_up" Text="&#x2191;" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="13" x:Name="vk_empty" Text="" />
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="0" x:Name="vk_hide" Text="Hide keyboard" />
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="1" x:Name="vk_space" Text="{Binding space_label, Source={StaticResource keyBoard}}" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="2" x:Name="vk_latrus" Text="Lat/Rus" MouseUp="vk_latrus_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="3" x:Name="vk_left" Text="&#x2190;" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="4" x:Name="vk_down" Text="&#x2193;" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+            <TextBlock Style="{StaticResource tastaturKey}" Grid.Column="5" x:Name="vk_right" Text="&#x2192;" MouseUp="key_MouseUp" MouseDown="key_MouseDown"/>
+        </Grid>
+    </StackPanel>
+</Window>
